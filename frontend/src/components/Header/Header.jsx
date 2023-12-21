@@ -7,19 +7,19 @@ import { BiMenu } from 'react-icons/bi'
 const navLinks = [
   {
     path:'/home',
-    display: 'Home'
+    display: 'Trang chủ'
   },
   {
     path:'/doctors',
-    display: 'Find a doctor'
+    display: 'Tìm Bác Sĩ'
   },
   {
     path:'/services',
-    display: 'Services'
+    display: 'Dịch Vụ Y Khoa'
   },
   {
     path:'/contact',
-    display: 'Contact'
+    display: 'Liên Hệ'
   }
 ]
 
