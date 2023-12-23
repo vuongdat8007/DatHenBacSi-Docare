@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../config";
 import { toast } from "react-toastify";
 import { authContext } from "../context/AuthContext";
+import HashLoader from "react-spinners/HashLoader";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -94,26 +95,34 @@ const Login = () => {
               type="submit"
               className="w-full bg-primaryColor text-white text-[18px] leading-[30px] rounded-lg px-4 py-3"
             >
-              Đăng nhập
+              {loading ? <HashLoader size={25} color="#fff" /> : `Đăng nhập`}
             </button>
           </div>
+          <div className="w-full flex">
+            <div className="w-1/2">
+              <p className="mt-5 text-textColor text-left">
+                Bạn chưa có tài khoản?
+                <Link
+                  to="/register"
+                  className="text-primaryColor font-medium ml-1"
+                >
+                  Đăng ký
+                </Link>
+              </p>
+            </div>
 
-          <p className="mt-5 text-textColor text-left">
-            Bạn chưa có tài khoản?
-            <Link to="/register" className="text-primaryColor font-medium ml-1">
-              Đăng ký
-            </Link>
-          </p>
-
-          <p className="mt-5 text-textColor text-right">
-            hoặc Quên mật khẩu
-            <Link
-              to="/forgot-password"
-              className="text-primaryColor font-medium ml-1"
-            >
-              Đăng ký
-            </Link>
-          </p>
+            <div className="w-1/2">
+              <p className="mt-5 text-textColor text-right">
+                hoặc
+                <Link
+                  to="/forgot-password"
+                  className="text-primaryColor font-medium ml-1"
+                >
+                  quên mật khẩu?
+                </Link>
+              </p>
+            </div>
+          </div>
         </form>
       </div>
     </section>

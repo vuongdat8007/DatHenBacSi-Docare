@@ -1,4 +1,6 @@
 import User from "../models/UserSchema.js";
+import Booking from "../models/BookingSchema.js";
+import Doctor from "../models/DoctorSchema.js";
 
 export const updateUser = async (req, res) => {
   const id = req.params.id;
@@ -77,5 +79,52 @@ export const getAllUser = async (req, res) => {
       success: false,
       message: "Không tìm thấy danh sách người dùng!",
     });
+  }
+};
+
+export const getUserProfile = async (req, res) => {
+  const userId = req.userId;
+
+  try {
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Không tìm thấy người dùng!" });
+    }
+
+    const { password, ...rest } = user._doc;
+
+    res.status(200).json({
+      success: true,
+      message: "Hồ sơ đang đã được tìm thấy, đang gửi đi...",
+      data: { ...rest },
+    });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+export const getMyAppointments = async (req, res) => {
+  try {
+    // step-1: retrieve appointments from booking
+    const bookings = await Booking.find({ user: req.userId });
+
+    // step-2: extract doctor ids from appointment bookings
+    const doctorIds = bookings.map((el) => el.doctor.id);
+
+    // step-3: retrieve doctors using doctor ids
+    const doctors = await Doctor.find({ _id: { $in: doctorIds } }).select(
+      "-password"
+    );
+
+    res.status(200).json({
+      success: true,
+      message: "Danh sách cuộc hẹn đang được tải xuống...",
+      data: doctors,
+    });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
   }
 };

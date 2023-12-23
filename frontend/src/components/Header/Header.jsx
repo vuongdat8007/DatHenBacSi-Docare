@@ -91,12 +91,12 @@ const Header = () => {
                 >
                   <figure className="w-[35px] h-[35px] rounded-full cursor-pointer">
                     <img
-                      src={user && user?.photo ? user?.photo : userImg}
+                      src={user?.photo ? user?.photo : userImg}
                       className="w-full rounded-full"
                       alt="ảnh đại diện"
                     />
                   </figure>
-                  <h2>{user?.name}</h2>
+                  <h2 className="w-full">{user?.name}</h2>
                 </Link>
               </div>
             ) : (
