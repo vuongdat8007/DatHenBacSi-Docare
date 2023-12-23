@@ -80,19 +80,32 @@ const Header = () => {
 
           {/* ================ nav-right =========== */}
           <div className="flex items-center gap-4">
-            <div className="hidden">
-              <Link to={"/"}>
-                <figure className="w-[35px] h-[35px] rounded-full cursor-pointer">
-                  <img src={userImg} className="w-full rounded-full" alt="" />
-                </figure>
+            {token && user ? (
+              <div>
+                <Link
+                  to={`${
+                    role === "doctor"
+                      ? "/doctors/profile/me"
+                      : "/users/profile/me"
+                  }`}
+                >
+                  <figure className="w-[35px] h-[35px] rounded-full cursor-pointer">
+                    <img
+                      src={user && user?.photo ? user?.photo : userImg}
+                      className="w-full rounded-full"
+                      alt="ảnh đại diện"
+                    />
+                  </figure>
+                  <h2>{user?.name}</h2>
+                </Link>
+              </div>
+            ) : (
+              <Link to={"/login"}>
+                <button className="bg-primaryColor py-2 px-6 text-white font-[600] h-[44px] flex items-center justify-center rounded-[50px]">
+                  Login
+                </button>
               </Link>
-            </div>
-            <h1>{user?.name}</h1>
-            <Link to={"/login"}>
-              <button className="bg-primaryColor py-2 px-6 text-white font-[600] h-[44px] flex items-center justify-center rounded-[50px]">
-                Login
-              </button>
-            </Link>
+            )}
 
             <span className="md:hidden" onClick={toggleMenu}>
               <BiMenu className="w-6 h-6 cursor-pointer" />
