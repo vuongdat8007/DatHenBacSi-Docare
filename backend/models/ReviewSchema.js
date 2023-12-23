@@ -55,7 +55,7 @@ reviewSchema.statics.calcAverageRatings = async function (doctorId) {
   //console.log(stats);
   await Doctor.findByIdAndUpdate(doctorId, {
     totalRating: stats[0].numOfRating,
-    averageRating: stats[0].averageRating,
+    averageRating: stats[0].avgRating,
   });
 };
 
