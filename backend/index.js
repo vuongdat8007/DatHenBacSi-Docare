@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import authRoute from "./Routes/auth.js";
 import userRoute from "./Routes/user.js";
 import doctorRoute from "./Routes/doctor.js";
+import reviewRoute from "./Routes/review.js";
 
 dotenv.config();
 
@@ -25,8 +26,8 @@ mongoose.set("strictQuery", false);
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URL, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
+      //useNewUrlParser: true,
+      //useUnifiedTopology: true,
     });
 
     console.log("MongoDB database is connected");
@@ -42,6 +43,7 @@ app.use(cors(corsOptions));
 app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/users", userRoute);
 app.use("/api/v1/doctors", doctorRoute);
+app.use("/api/v1/reviews", reviewRoute);
 
 app.listen(port, () => {
   connectDB();

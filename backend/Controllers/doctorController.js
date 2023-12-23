@@ -47,7 +47,9 @@ export const getSingleDoctor = async (req, res) => {
   const id = req.params.id;
 
   try {
-    const doctor = await Doctor.findById(id).select("-password"); // exclude password field in the response;
+    const doctor = await Doctor.findById(id)
+      .populate("reviews") // include the reviews info from reviewsModel
+      .select("-password"); // exclude password field in the response;
 
     res.status(200).json({
       success: true,

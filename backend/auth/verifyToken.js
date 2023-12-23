@@ -17,12 +17,13 @@ export const authenticate = async (req, res, next) => {
   try {
     //console.log(authToken);
     const token = authToken.split(" ")[1];
-
+    //console.log(token);
     // verify token
     const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
 
-    req.userId = decoded.userId;
+    req.userId = decoded.id;
     req.role = decoded.role;
+    //console.log("decoded: " + JSON.stringify(decoded));
 
     next(); // must call the next function
   } catch (error) {
@@ -34,9 +35,10 @@ export const authenticate = async (req, res, next) => {
 };
 
 export const restrict = (roles) => async (req, res, next) => {
+  //  const userId = req.params.id;
   const userId = req.userId;
   let user;
-  console.log(userId);
+  //console.log(userId);
   const patient = await User.findById(userId);
   const doctor = await Doctor.findById(userId);
 
@@ -45,6 +47,11 @@ export const restrict = (roles) => async (req, res, next) => {
   }
   if (doctor) {
     user = doctor;
+  }
+  if (user === undefined) {
+    return res
+      .status(401)
+      .json({ success: false, message: "You are not authorised!" });
   }
 
   if (!roles.includes(user.role)) {
