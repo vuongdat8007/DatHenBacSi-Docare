@@ -68,7 +68,7 @@ export const register = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: "Đăng ký người dùng không thành công: " + eror,
+      message: "Đăng ký người dùng không thành công: " + error.message,
     });
   }
 };
