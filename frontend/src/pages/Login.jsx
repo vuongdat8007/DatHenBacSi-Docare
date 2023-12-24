@@ -53,8 +53,8 @@ const Login = () => {
       setLoading(false);
       toast.success(result.message);
       navigate("/home");
-    } catch (error) {
-      toast.error(error.message);
+    } catch (err) {
+      toast.error(err.message);
       setLoading(false);
     }
   };
