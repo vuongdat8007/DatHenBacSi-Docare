@@ -24,6 +24,7 @@ export const authenticate = async (req, res, next) => {
     req.userId = decoded.id;
     req.role = decoded.role;
     //console.log("decoded: " + JSON.stringify(decoded));
+    //console.log("req.userId " + req.userId);
 
     next(); // must call the next function
   } catch (error) {

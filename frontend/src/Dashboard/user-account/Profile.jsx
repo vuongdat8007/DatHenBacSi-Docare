@@ -27,9 +27,9 @@ const Profile = ({ user }) => {
     setFormData({
       name: user.name,
       email: user.email,
-      photo: user.photo,
+      photo: user?.photo,
       gender: user.gender,
-      bloodType: user.bloodType,
+      bloodType: user?.bloodType,
     });
   }, [user]);
 
