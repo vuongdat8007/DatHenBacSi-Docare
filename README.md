@@ -21,25 +21,26 @@ Docare là một nền tảng trực quan và thân thiện với người dùng
 Để chạy ứng dụng tại máy cục bộ:
 
 1. **Sao Chép Repository:**
-    
+    ```bash
     git clone https://github.com/vuongdat8007/Docare
     cd Docare
     Cài Đặt Các Phụ Thuộc:
 
 Phía backend:
 
-    
+    ```bash
     Copy code
     cd backend
     npm install
-
+    ```
 
 Phía frontend:
 
-    
+    ```bash
     Copy code
     cd frontend
     npm install
+    ```
 
 Thiết Lập Biến Môi Trường:
 
@@ -48,14 +49,16 @@ Thiết Lập Biến Môi Trường:
 Chạy Ứng Dụng:
 
     Backend:
-        
+        ```bash
         Copy code
         npm start
+        ```
 
     Frontend:
-        
+        ```bash
         Copy code
         npm start
+        ```
 
 
 Sử Dụng
@@ -72,7 +75,7 @@ Fork Dự Án
     Commit Thay Đổi của Bạn (git commit -m 'Add some AmazingFeature')
     Push Branch (git push origin feature/AmazingFeature)
     Mở Pull Request
-    
+
 Bản Quyền
 Phân phối theo Giấy Phép MIT. Xem LICENSE để biết thêm thông tin.
 
