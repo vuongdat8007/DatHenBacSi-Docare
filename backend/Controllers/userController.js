@@ -108,21 +108,16 @@ export const getUserProfile = async (req, res) => {
 
 export const getMyAppointments = async (req, res) => {
   try {
-    // step-1: retrieve appointments from booking
-    const bookings = await Booking.find({ user: req.userId });
-
-    // step-2: extract doctor ids from appointment bookings
-    const doctorIds = bookings.map((el) => el.doctor.id);
-
-    // step-3: retrieve doctors using doctor ids
-    const doctors = await Doctor.find({ _id: { $in: doctorIds } }).select(
-      "-password"
-    );
+    // Retrieve appointments and populate doctor data
+    const bookings = await Booking.find({ user: req.userId }).populate({
+      path: "doctor",
+      select: "-password", // Exclude password field
+    });
 
     res.status(200).json({
       success: true,
       message: "Danh sách cuộc hẹn đang được tải xuống...",
-      data: doctors,
+      data: bookings, // or whatever data you're sending
     });
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });
