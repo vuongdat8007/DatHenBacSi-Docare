@@ -11,7 +11,7 @@ import Error from "../../components/Error/Error";
 
 const Dashboard = () => {
   const { dispatch } = useContext(authContext);
-  const [tab, setTab] = useState("profile");
+  const [tab, setTab] = useState("bookings");
 
   const {
     data: doctorData,
@@ -89,17 +89,17 @@ const Dashboard = () => {
                   Lịch hẹn bệnh nhân
                 </button>
                 <button
-                  onClick={() => setTab("settings")}
+                  onClick={() => setTab("profile")}
                   className={` ${
-                    tab === "settings" &&
+                    tab === "profile" &&
                     "bg-primaryColor text-white font-normal"
                   } p-2 rounded-md text-headingColor font-semibold text-[16px] leading-7 border border-solid border-primaryColor`}
                 >
                   Tuỳ chỉnh hồ sơ
                 </button>
               </div>
-              {tab === "bookings" && <MyDoctorBookings doctor={doctorData} />}
-              {tab === "settings" && <DoctorProfile doctor={doctorData} />}
+              {tab === "bookings" && <MyDoctorBookings />}
+              {tab === "profile" && <DoctorProfile doctor={doctorData} />}
             </div>
           </div>
         )}

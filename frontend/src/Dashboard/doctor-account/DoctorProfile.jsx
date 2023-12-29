@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import HashLoader from "react-spinners/HashLoader.js";
 import MoneyInput from "../../components/Doctors/MoneyInput.jsx";
 import TimeSlotsInput from "../../components/Doctors/TimeSlotsInput.jsx";
+import DoctorAvailability from "../../components/Doctors/DoctorAvailability.jsx";
 
 const DoctorProfile = ({ doctor }) => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -16,8 +17,8 @@ const DoctorProfile = ({ doctor }) => {
     name: "",
     email: "",
     phone: "",
-    gender: null,
-    photo: null,
+    gender: "",
+    photo: "",
     about: "",
     bio: "",
     timeSlots: [],
@@ -286,14 +287,20 @@ const DoctorProfile = ({ doctor }) => {
         </div>
 
         <div className="mb-5">
-          <label>Khoảng thời gian có sẵn để khám bệnh:</label>
-          <TimeSlotsInput
+          <h3 className="text-[18px] text-bold text-headingColor">
+            Khoảng thời gian sẵn sàng khám bệnh:
+          </h3>
+          {/* <TimeSlotsInput
             timeSlots={formData.timeSlots}
             setTimeSlots={handleTimeSlotsChange}
-          />
+          /> */}
+          <DoctorAvailability doctorId={doctor._id} />
         </div>
 
         <div className="mb-5">
+          <h3 className="text-[18px] text-bold text-headingColor">
+            Tóm tắt tiểu sử:
+          </h3>
           <textarea
             type="text"
             rows={2}
@@ -307,6 +314,9 @@ const DoctorProfile = ({ doctor }) => {
         </div>
 
         <div className="mb-5">
+          <h3 className="text-[18px] text-bold text-headingColor">
+            Giới thiệu bản thân:
+          </h3>
           <textarea
             type="text"
             rows={5}

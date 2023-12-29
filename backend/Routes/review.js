@@ -4,7 +4,7 @@ import { authenticate, restrict } from "../auth/verifyToken.js";
 
 const router = express.Router({ mergeParams: true });
 
-// /doctor/doctorId/reviews
+// /doctors/doctorId/reviews
 
 router
   .route("/")

@@ -17,6 +17,10 @@ const bookingSchema = new mongoose.Schema(
       type: Date,
       required: true,
     },
+    rawAppointmentData: {
+      type: String,
+      required: true,
+    },
     status: {
       type: String,
       enum: ["pending", "approved", "cancelled"],

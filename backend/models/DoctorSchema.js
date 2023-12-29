@@ -1,5 +1,22 @@
 import mongoose from "mongoose";
 
+const availabilitySchema = new mongoose.Schema({
+  day: {
+    type: String,
+    enum: [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    ],
+    required: true,
+  },
+  timeSlots: [{ type: String }], // e.g., ['09:00-10:00', '10:00-11:00']
+});
+
 const DoctorSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
@@ -39,6 +56,8 @@ const DoctorSchema = new mongoose.Schema({
     enum: ["pending", "approved", "cancelled"],
     default: "pending",
   },
+  availability: [availabilitySchema],
+
   //appointments: [{ type: mongoose.Types.ObjectId, ref: "Appointment" }],
   appointments: [{ type: mongoose.Types.ObjectId, ref: "Booking" }],
 });
