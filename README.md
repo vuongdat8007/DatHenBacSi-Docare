@@ -21,49 +21,58 @@ Docare là một nền tảng trực quan và thân thiện với người dùng
 Để chạy ứng dụng tại máy cục bộ:
 
 1. **Sao Chép Repository:**
-    ```bash
-    ```git clone https://github.com/vuongdat8007/Docare
-    ```cd Docare
-    ```Cài Đặt Các Phụ Thuộc:
+    
+    git clone https://github.com/vuongdat8007/Docare
+    cd Docare
+    Cài Đặt Các Phụ Thuộc:
 
 Phía backend:
 
-bash
-Copy code
-cd backend
-npm install
+    
+    Copy code
+    cd backend
+    npm install
+
+
 Phía frontend:
 
-bash
-Copy code
-cd frontend
-npm install
+    
+    Copy code
+    cd frontend
+    npm install
+
 Thiết Lập Biến Môi Trường:
 
-Tạo một file .env trong thư mục backend và thiết lập các biến môi trường cần thiết (ví dụ, URL cơ sở dữ liệu, khóa bí mật cho JWT).
+    Tạo một file .env trong thư mục backend và thiết lập các biến môi trường cần thiết (ví dụ, URL cơ sở dữ liệu, khóa bí mật cho JWT).
+
 Chạy Ứng Dụng:
 
-Backend:
-bash
-Copy code
-npm start
-Frontend:
-bash
-Copy code
-npm start
-Sử Dụng
-Sau khi khởi động ứng dụng, truy cập http://localhost:5173 (hoặc cổng được cấu hình) trong trình duyệt để sử dụng nền tảng Docare.
+    Backend:
+        
+        Copy code
+        npm start
 
-Bác Sĩ có thể đăng nhập/đăng ký để quản lý khả năng tiếp nhận bệnh nhân của mình.
-Bệnh Nhân có thể tìm kiếm thông tin bác sĩ, kiểm tra các khung giờ có sẵn, và đặt hẹn.
+    Frontend:
+        
+        Copy code
+        npm start
+
+
+Sử Dụng
+    Sau khi khởi động ứng dụng, truy cập http://localhost:5173 (hoặc cổng được cấu hình) trong trình duyệt để sử dụng nền tảng Docare.
+
+    Bác Sĩ có thể đăng nhập/đăng ký để quản lý khả năng tiếp nhận bệnh nhân của mình.
+    Bệnh Nhân có thể tìm kiếm thông tin bác sĩ, kiểm tra các khung giờ có sẵn, và đặt hẹn.
+
 Đóng Góp
-Chào mừng đóng góp cho dự án Docare!
+    Chào mừng đóng góp cho dự án Docare!
 
 Fork Dự Án
-Tạo Branch Tính Năng của Bạn (git checkout -b feature/AmazingFeature)
-Commit Thay Đổi của Bạn (git commit -m 'Add some AmazingFeature')
-Push Branch (git push origin feature/AmazingFeature)
-Mở Pull Request
+    Tạo Branch Tính Năng của Bạn (git checkout -b feature/AmazingFeature)
+    Commit Thay Đổi của Bạn (git commit -m 'Add some AmazingFeature')
+    Push Branch (git push origin feature/AmazingFeature)
+    Mở Pull Request
+    
 Bản Quyền
 Phân phối theo Giấy Phép MIT. Xem LICENSE để biết thêm thông tin.
 

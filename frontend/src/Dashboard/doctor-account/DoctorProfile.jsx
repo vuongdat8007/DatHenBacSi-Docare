@@ -38,8 +38,8 @@ const DoctorProfile = ({ doctor }) => {
 
   // populate ticketPrice with formatted numeric
   const formattedValue = doctor?.ticketPrice
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    ?.toString()
+    ?.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
   useEffect(() => {
     // Set initial form data from doctor data
