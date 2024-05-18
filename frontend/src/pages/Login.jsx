@@ -20,7 +20,6 @@ const Login = () => {
   };
 
   const submitHandler = async (event) => {
-    //console.log(formData);
     event.preventDefault();
     setLoading(true);
 
@@ -48,11 +47,15 @@ const Login = () => {
         },
       });
 
-      console.log(result, "login data");
-
       setLoading(false);
       toast.success(result.message);
-      navigate("/home");
+
+      // Redirect based on role
+      if (result.role === 'admin') {
+        navigate("/admin");
+      } else {
+        navigate("/home");
+      }
     } catch (err) {
       toast.error(err.message);
       setLoading(false);

@@ -7,6 +7,7 @@ import Doctors from "../pages/Doctors/Doctors";
 import DoctorDetails from "../pages/Doctors/DoctorDetails";
 import MyAccount from "../Dashboard/user-account/MyAccount";
 import Dashboard from "../Dashboard/doctor-account/Dashboard";
+import AdminPanel from "../components/Admin/AdminPanel";
 
 import { Routes, Route } from "react-router-dom";
 import ProtectedRoutes from "./ProtectedRoutes";
@@ -38,6 +39,11 @@ const Routers = () => {
           </ProtectedRoutes>
         }
       />
+      <Route path="/admin" element={
+          <ProtectedRoutes allowedRoles={["admin"]}>
+            <AdminPanel />
+          </ProtectedRoutes>} />
+      
     </Routes>
   );
 };
