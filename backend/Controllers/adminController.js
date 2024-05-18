@@ -1,7 +1,7 @@
 // Import necessary models
 import User from '../models/UserSchema.js';
 import Doctor from '../models/DoctorSchema.js';
-import Appointment from '../models/BookingSchema.js';
+import Booking from '../models/BookingSchema.js';
 import Review from '../models/ReviewSchema.js';
 
 // User controllers
@@ -93,42 +93,45 @@ export const deleteDoctor = async (req, res) => {
 // Appointment controllers
 export const getAllAppointments = async (req, res) => {
   try {
-    const appointments = await Appointment.find().populate('doctor').populate('patient');
+    const appointments = await Booking.find().populate('doctor').populate('user');
     res.status(200).json(appointments);
   } catch (error) {
-    res.status(500).json({ message: 'Error fetching appointments' });
+    console.error('Error fetching appointments:', error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 };
 
 export const createAppointment = async (req, res) => {
-  const { doctor, patient, date } = req.body;
   try {
-    const newAppointment = new Appointment({ doctor, patient, date });
+    const { doctor, user, ticketPrice, appointmentDate, rawAppointmentData } = req.body;
+    const newAppointment = new Booking({ doctor, user, ticketPrice, appointmentDate, rawAppointmentData });
     await newAppointment.save();
     res.status(201).json(newAppointment);
   } catch (error) {
-    res.status(500).json({ message: 'Error creating appointment' });
+    console.error('Error creating appointment:', error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 };
 
 export const updateAppointment = async (req, res) => {
-  const { id } = req.params;
-  const { doctor, patient, date } = req.body;
   try {
-    const updatedAppointment = await Appointment.findByIdAndUpdate(id, { doctor, patient, date }, { new: true });
+    const { id } = req.params;
+    const updatedAppointment = await Booking.findByIdAndUpdate(id, req.body, { new: true });
     res.status(200).json(updatedAppointment);
   } catch (error) {
-    res.status(500).json({ message: 'Error updating appointment' });
+    console.error('Error updating appointment:', error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 };
 
 export const deleteAppointment = async (req, res) => {
-  const { id } = req.params;
   try {
-    await Appointment.findByIdAndDelete(id);
-    res.status(200).json({ message: 'Appointment deleted' });
+    const { id } = req.params;
+    await Booking.findByIdAndDelete(id);
+    res.status(204).send();
   } catch (error) {
-    res.status(500).json({ message: 'Error deleting appointment' });
+    console.error('Error deleting appointment:', error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 };
 

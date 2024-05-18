@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import { authContext } from '../../context/AuthContext';
 import { BASE_URL } from '../../config';
-import useFetchDataAdmin from '../../hooks/useFetchDataAdmin';
+import useFetchData from '../../hooks/useFetchData';
 import Loading from '../../components/Loader/Loading';
 import Error from '../../components/Error/Error';
 
@@ -10,18 +10,20 @@ const AppointmentManagement = () => {
   const { token } = useContext(authContext);
   const [doctor, setDoctor] = useState('');
   const [patient, setPatient] = useState('');
-  const [date, setDate] = useState('');
+  const [ticketPrice, setTicketPrice] = useState('');
+  const [appointmentDate, setAppointmentDate] = useState('');
+  const [rawAppointmentData, setRawAppointmentData] = useState('');
 
   const {
     data: appointments = [],
     loading,
     error,
     refetch: fetchAppointments
-  } = useFetchDataAdmin(`${BASE_URL}/admin/appointments`, token);
+  } = useFetchData(`${BASE_URL}/admin/appointments`, token);
 
   const handleCreateAppointment = async () => {
     try {
-      await axios.post(`${BASE_URL}/admin/appointments`, { doctor, patient, date }, {
+      await axios.post(`${BASE_URL}/admin/appointments`, { doctor, patient, ticketPrice, appointmentDate, rawAppointmentData }, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -57,7 +59,9 @@ const AppointmentManagement = () => {
               <div>
                 <input value={doctor} onChange={(e) => setDoctor(e.target.value)} placeholder="Doctor ID" className="w-full px-2 py-3 mb-4 border-b border-solid border-[#0066ff61] focus:outline-none focus:border-b-primaryColor text-[16px] leading-7 text-headingColor placeholder:text-textColor cursor-pointer" />
                 <input value={patient} onChange={(e) => setPatient(e.target.value)} placeholder="Patient ID" className="w-full px-2 py-3 mb-4 border-b border-solid border-[#0066ff61] focus:outline-none focus:border-b-primaryColor text-[16px] leading-7 text-headingColor placeholder:text-textColor cursor-pointer" />
-                <input value={date} onChange={(e) => setDate(e.target.value)} placeholder="Date" type="datetime-local" className="w-full px-2 py-3 mb-4 border-b border-solid border-[#0066ff61] focus:outline-none focus:border-b-primaryColor text-[16px] leading-7 text-headingColor placeholder:text-textColor cursor-pointer" />
+                <input value={ticketPrice} onChange={(e) => setTicketPrice(e.target.value)} placeholder="Ticket Price" className="w-full px-2 py-3 mb-4 border-b border-solid border-[#0066ff61] focus:outline-none focus:border-b-primaryColor text-[16px] leading-7 text-headingColor placeholder:text-textColor cursor-pointer" />
+                <input value={appointmentDate} onChange={(e) => setAppointmentDate(e.target.value)} placeholder="Appointment Date" type="datetime-local" className="w-full px-2 py-3 mb-4 border-b border-solid border-[#0066ff61] focus:outline-none focus:border-b-primaryColor text-[16px] leading-7 text-headingColor placeholder:text-textColor cursor-pointer" />
+                <input value={rawAppointmentData} onChange={(e) => setRawAppointmentData(e.target.value)} placeholder="Raw Appointment Data" className="w-full px-2 py-3 mb-4 border-b border-solid border-[#0066ff61] focus:outline-none focus:border-b-primaryColor text-[16px] leading-7 text-headingColor placeholder:text-textColor cursor-pointer" />
                 <button onClick={handleCreateAppointment} className="w-full bg-primaryColor text-white text-[18px] leading-[30px] rounded-lg px-4 py-3">Create Appointment</button>
               </div>
             </div>
@@ -68,6 +72,7 @@ const AppointmentManagement = () => {
                     <th className="text-left p-2">ID</th>
                     <th className="text-left p-2">Doctor</th>
                     <th className="text-left p-2">Patient</th>
+                    <th className="text-left p-2">Ticket Price</th>
                     <th className="text-left p-2">Date</th>
                     <th className="text-left p-2">Actions</th>
                   </tr>
@@ -79,7 +84,8 @@ const AppointmentManagement = () => {
                         <td className="p-2">{appointment._id}</td>
                         <td className="p-2">{appointment.doctor.name}</td>
                         <td className="p-2">{appointment.patient.name}</td>
-                        <td className="p-2">{new Date(appointment.date).toLocaleString()}</td>
+                        <td className="p-2">{appointment.ticketPrice}</td>
+                        <td className="p-2">{new Date(appointment.appointmentDate).toLocaleString()}</td>
                         <td className="p-2">
                           <button onClick={() => handleDeleteAppointment(appointment._id)} className="bg-red-600 text-white px-4 py-2 rounded-md">Delete</button>
                         </td>
@@ -87,7 +93,7 @@ const AppointmentManagement = () => {
                     ))
                   ) : (
                     <tr>
-                      <td colSpan="5" className="text-center p-4">No appointments found</td>
+                      <td colSpan="6" className="text-center p-4">No appointments found</td>
                     </tr>
                   )}
                 </tbody>
