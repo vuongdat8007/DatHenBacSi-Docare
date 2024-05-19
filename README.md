@@ -21,68 +21,72 @@ Docare là một nền tảng trực quan và thân thiện với người dùng
 Để chạy ứng dụng tại máy cục bộ:
 
 1. **Sao Chép Repository:**
-    ```
+
+    ```sh
     git clone https://github.com/vuongdat8007/DatHenBacSi-Docare.git
     cd DatHenBacSi-Docare
     ```
 
 2. **Cài Đặt Các Phụ Thuộc:**
 
-Phía backend:
-    ```
+    Phía backend:
+    
+    ```sh
     cd backend
     npm install
     ```
 
-Phía frontend:
-    ```
+    Phía frontend:
+    
+    ```sh
     cd frontend
     npm install
     ```
 
-Thiết Lập Biến Môi Trường:
+3. **Thiết Lập Biến Môi Trường:**
 
-    Tạo một file .env trong thư mục backend và thiết lập các biến môi trường cần thiết (ví dụ, URL cơ sở dữ liệu, khóa bí mật cho JWT).
+    Tạo một file `.env` trong thư mục `backend` và thiết lập các biến môi trường cần thiết (ví dụ, URL cơ sở dữ liệu, khóa bí mật cho JWT).
 
-Chạy Ứng Dụng:
+4. **Chạy Ứng Dụng:**
 
     Backend:
-       ``` 
-       cd backend
-       npm install
-       npm run start-dev
-       ``` 
-        
+
+    ```sh
+    cd backend
+    npm run start-dev
+    ```
 
     Frontend:
-        ```
-        cd frontend
-        npm install
-        npm run dev
-        ```
 
+    ```sh
+    cd frontend
+    npm run dev
+    ```
 
-Sử Dụng
-    Sau khi khởi động ứng dụng, truy cập http://localhost:5173 (hoặc cổng được cấu hình) trong trình duyệt để sử dụng nền tảng Docare.
+## Sử Dụng
 
-    Bác Sĩ có thể đăng nhập/đăng ký để quản lý khả năng tiếp nhận bệnh nhân của mình.
-    Bệnh Nhân có thể đăng ký, đăng nhập và tìm kiếm thông tin bác sĩ, kiểm tra các khung giờ có sẵn, và đặt hẹn, trả tiền hẹn khám bệnh.
-    Admin [http://localhost:5173/admin] quản trị trang web có thể thêm/xóa/sửa bệnh nhân, bác sĩ, quản lý lịch hẹn khám bệnh, quản lý review.
+Sau khi khởi động ứng dụng, truy cập [http://localhost:5173](http://localhost:5173) (hoặc cổng được cấu hình) trong trình duyệt để sử dụng nền tảng Docare.
 
-Đóng Góp
-    Chào mừng đóng góp cho dự án Docare!
+- Bác Sĩ có thể đăng nhập/đăng ký để quản lý khả năng tiếp nhận bệnh nhân của mình.
+- Bệnh Nhân có thể đăng ký, đăng nhập và tìm kiếm thông tin bác sĩ, kiểm tra các khung giờ có sẵn, và đặt hẹn, trả tiền hẹn khám bệnh.
+- Admin ([http://localhost:5173/admin](http://localhost:5173/admin)) quản trị trang web có thể thêm/xóa/sửa bệnh nhân, bác sĩ, quản lý lịch hẹn khám bệnh, quản lý review.
 
-Fork Dự Án
-    Tạo Branch Tính Năng của Bạn (git checkout -b feature/AmazingFeature)
-    Commit Thay Đổi của Bạn (git commit -m 'Add some AmazingFeature')
-    Push Branch (git push origin feature/AmazingFeature)
-    Mở Pull Request
+## Đóng Góp
 
-Bản Quyền
+Chào mừng đóng góp cho dự án Docare!
+
+1. Fork Dự Án
+2. Tạo Branch Tính Năng của Bạn (`git checkout -b feature/AmazingFeature`)
+3. Commit Thay Đổi của Bạn (`git commit -m 'Add some AmazingFeature'`)
+4. Push Branch (`git push origin feature/AmazingFeature`)
+5. Mở Pull Request
+
+## Bản Quyền
+
 Phân phối theo Giấy Phép MIT. Xem LICENSE để biết thêm thông tin.
 
-Liên Hệ
+## Liên Hệ
+
 Vương Quốc Đạt – vuongdat@gmail.com
 
-Liên kết Dự Án: https://github.com/vuongdat8007/DatHenBacSi-Docare
-
+Liên kết Dự Án: [https://github.com/vuongdat8007/DatHenBacSi-Docare](https://github.com/vuongdat8007/DatHenBacSi-Docare)
