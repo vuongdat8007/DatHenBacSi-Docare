@@ -9,7 +9,7 @@ const AppointmentManagement = () => {
   const { token } = useContext(authContext);
   const [appointments, setAppointments] = useState([]);
   const [doctor, setDoctor] = useState('');
-  const [user, setUser] = useState(''); // Keep it as user here
+  const [user, setUser] = useState('');
   const [ticketPrice, setTicketPrice] = useState('');
   const [appointmentDate, setAppointmentDate] = useState('');
   const [rawAppointmentData, setRawAppointmentData] = useState('');
@@ -24,7 +24,6 @@ const AppointmentManagement = () => {
             Authorization: `Bearer ${token}`,
           },
         });
-        // Map user to patient in the frontend
         const formattedAppointments = response.data.map(appointment => ({
           ...appointment,
           patient: appointment.user,
@@ -85,38 +84,52 @@ const AppointmentManagement = () => {
               </div>
             </div>
             <div className="md:col-span-2 md:px-[30px]">
-              <table className="w-full">
-                <thead>
-                  <tr>
-                    <th className="text-left p-2">ID</th>
-                    <th className="text-left p-2">Doctor</th>
-                    <th className="text-left p-2">Patient</th>
-                    <th className="text-left p-2">Ticket Price</th>
-                    <th className="text-left p-2">Date</th>
-                    <th className="text-left p-2">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {appointments.length > 0 ? (
-                    appointments.map(appointment => (
-                      <tr key={appointment._id}>
-                        <td className="p-2">{appointment._id}</td>
-                        <td className="p-2">{appointment.doctor?.name || 'N/A'}</td>
-                        <td className="p-2">{appointment.patient?.name || 'N/A'}</td>
-                        <td className="p-2">{appointment.ticketPrice}</td>
-                        <td className="p-2">{new Date(appointment.appointmentDate).toLocaleString()}</td>
-                        <td className="p-2">
-                          <button onClick={() => handleDeleteAppointment(appointment._id)} className="bg-red-600 text-white px-4 py-2 rounded-md">Delete</button>
-                        </td>
-                      </tr>
-                    ))
-                  ) : (
+              <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                  <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
-                      <td colSpan="6" className="text-center p-4">No appointments found</td>
+                      <th scope="col" className="p-4">
+                        <div className="flex items-center">
+                          <input id="checkbox-all-search" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                          <label htmlFor="checkbox-all-search" className="sr-only">checkbox</label>
+                        </div>
+                      </th>
+                      <th scope="col" className="px-6 py-3">ID</th>
+                      <th scope="col" className="px-6 py-3">Doctor</th>
+                      <th scope="col" className="px-6 py-3">Patient</th>
+                      <th scope="col" className="px-6 py-3">Ticket Price</th>
+                      <th scope="col" className="px-6 py-3">Date</th>
+                      <th scope="col" className="px-6 py-3">Actions</th>
                     </tr>
-                  )}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {appointments.length > 0 ? (
+                      appointments.map(appointment => (
+                        <tr key={appointment._id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                          <td className="w-4 p-4">
+                            <div className="flex items-center">
+                              <input id={`checkbox-table-search-${appointment._id}`} type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                              <label htmlFor={`checkbox-table-search-${appointment._id}`} className="sr-only">checkbox</label>
+                            </div>
+                          </td>
+                          <td className="px-6 py-4">{appointment._id}</td>
+                          <td className="px-6 py-4">{appointment.doctor?.name || 'N/A'}</td>
+                          <td className="px-6 py-4">{appointment.patient?.name || 'N/A'}</td>
+                          <td className="px-6 py-4">{appointment.ticketPrice}</td>
+                          <td className="px-6 py-4">{new Date(appointment.appointmentDate).toLocaleString()}</td>
+                          <td className="flex items-center px-6 py-4">
+                            <a href="#" onClick={() => handleDeleteAppointment(appointment._id)} className="font-medium text-red-600 dark:text-red-500 hover:underline ms-3">Delete</a>
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      <tr>
+                        <td colSpan="7" className="text-center p-4">No appointments found</td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         )}
