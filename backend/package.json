@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vuongdat8007/Docare.git#main"
+    "url": "git+https://github.com/vuongdat8007/DatHenBacSi-Docare.git#main"
   },
   "author": "vuongdat8007",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/vuongdat8007/Docare/issues"
+    "url": "https://github.com/vuongdat8007/DatHenBacSi-Docare/issues"
   },
-  "homepage": "https://github.com/vuongdat8007/Docare/tree/main#readme",
+  "homepage": "https://github.com/vuongdat8007/DatHenBacSi-Docare/tree/main#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
@@ -27,6 +27,7 @@
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.3.0",
-    "mongoose": "^8.0.3"
+    "mongoose": "^8.0.3",
+    "nodemon": "^3.1.0"
   }
 }
