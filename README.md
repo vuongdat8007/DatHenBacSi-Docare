@@ -70,7 +70,12 @@ Sau khi khởi động ứng dụng, truy cập [http://localhost:5173](http://l
 - Bác Sĩ có thể đăng nhập/đăng ký để quản lý khả năng tiếp nhận bệnh nhân của mình.
 - Bệnh Nhân có thể đăng ký, đăng nhập và tìm kiếm thông tin bác sĩ, kiểm tra các khung giờ có sẵn, và đặt hẹn, trả tiền hẹn khám bệnh.
 - Admin ([http://localhost:5173/admin](http://localhost:5173/admin)) quản trị trang web có thể thêm/xóa/sửa bệnh nhân, bác sĩ, quản lý lịch hẹn khám bệnh, quản lý review.
-
+-- Default admin:
+---
+    ```sh
+    login: admin@docare.site 
+    password: 123
+    ```
 ## Đóng Góp
 
 Chào mừng đóng góp cho dự án Docare!
