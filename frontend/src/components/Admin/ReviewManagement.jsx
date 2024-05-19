@@ -80,8 +80,8 @@ const ReviewManagement = () => {
                     reviews.map(review => (
                       <tr key={review._id}>
                         <td className="p-2">{review._id}</td>
-                        <td className="p-2">{review.doctor.name}</td>
-                        <td className="p-2">{review.user.name}</td>
+                        <td className="p-2">{review.doctor?.name}</td>
+                        <td className="p-2">{review.user?.name}</td>
                         <td className="p-2">{review.reviewText}</td>
                         <td className="p-2">{review.rating}</td>
                         <td className="p-2">
