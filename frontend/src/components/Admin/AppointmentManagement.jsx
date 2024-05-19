@@ -1,34 +1,53 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { authContext } from '../../context/AuthContext';
 import { BASE_URL } from '../../config';
-import useFetchData from '../../hooks/useFetchData';
 import Loading from '../../components/Loader/Loading';
 import Error from '../../components/Error/Error';
 
 const AppointmentManagement = () => {
   const { token } = useContext(authContext);
+  const [appointments, setAppointments] = useState([]);
   const [doctor, setDoctor] = useState('');
-  const [patient, setPatient] = useState('');
+  const [user, setUser] = useState(''); // Keep it as user here
   const [ticketPrice, setTicketPrice] = useState('');
   const [appointmentDate, setAppointmentDate] = useState('');
   const [rawAppointmentData, setRawAppointmentData] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const {
-    data: appointments = [],
-    loading,
-    error,
-    refetch: fetchAppointments
-  } = useFetchData(`${BASE_URL}/admin/appointments`, token);
+  useEffect(() => {
+    const fetchAppointments = async () => {
+      try {
+        const response = await axios.get(`${BASE_URL}/admin/appointments`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        // Map user to patient in the frontend
+        const formattedAppointments = response.data.map(appointment => ({
+          ...appointment,
+          patient: appointment.user,
+        }));
+        setAppointments(formattedAppointments);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchAppointments();
+  }, [token]);
 
   const handleCreateAppointment = async () => {
     try {
-      await axios.post(`${BASE_URL}/admin/appointments`, { doctor, patient, ticketPrice, appointmentDate, rawAppointmentData }, {
+      await axios.post(`${BASE_URL}/admin/appointments`, { doctor, user, ticketPrice, appointmentDate, rawAppointmentData }, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      fetchAppointments();
+      fetchAppointments(); // Refetch appointments after creating a new one
     } catch (error) {
       console.error('Error creating appointment:', error);
     }
@@ -41,7 +60,7 @@ const AppointmentManagement = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      fetchAppointments();
+      fetchAppointments(); // Refetch appointments after deleting one
     } catch (error) {
       console.error('Error deleting appointment:', error);
     }
@@ -58,7 +77,7 @@ const AppointmentManagement = () => {
               <h2 className="text-center text-[22px] leading-9 font-bold mb-10">Appointment Management</h2>
               <div>
                 <input value={doctor} onChange={(e) => setDoctor(e.target.value)} placeholder="Doctor ID" className="w-full px-2 py-3 mb-4 border-b border-solid border-[#0066ff61] focus:outline-none focus:border-b-primaryColor text-[16px] leading-7 text-headingColor placeholder:text-textColor cursor-pointer" />
-                <input value={patient} onChange={(e) => setPatient(e.target.value)} placeholder="Patient ID" className="w-full px-2 py-3 mb-4 border-b border-solid border-[#0066ff61] focus:outline-none focus:border-b-primaryColor text-[16px] leading-7 text-headingColor placeholder:text-textColor cursor-pointer" />
+                <input value={user} onChange={(e) => setUser(e.target.value)} placeholder="Patient ID" className="w-full px-2 py-3 mb-4 border-b border-solid border-[#0066ff61] focus:outline-none focus:border-b-primaryColor text-[16px] leading-7 text-headingColor placeholder:text-textColor cursor-pointer" />
                 <input value={ticketPrice} onChange={(e) => setTicketPrice(e.target.value)} placeholder="Ticket Price" className="w-full px-2 py-3 mb-4 border-b border-solid border-[#0066ff61] focus:outline-none focus:border-b-primaryColor text-[16px] leading-7 text-headingColor placeholder:text-textColor cursor-pointer" />
                 <input value={appointmentDate} onChange={(e) => setAppointmentDate(e.target.value)} placeholder="Appointment Date" type="datetime-local" className="w-full px-2 py-3 mb-4 border-b border-solid border-[#0066ff61] focus:outline-none focus:border-b-primaryColor text-[16px] leading-7 text-headingColor placeholder:text-textColor cursor-pointer" />
                 <input value={rawAppointmentData} onChange={(e) => setRawAppointmentData(e.target.value)} placeholder="Raw Appointment Data" className="w-full px-2 py-3 mb-4 border-b border-solid border-[#0066ff61] focus:outline-none focus:border-b-primaryColor text-[16px] leading-7 text-headingColor placeholder:text-textColor cursor-pointer" />
@@ -82,8 +101,8 @@ const AppointmentManagement = () => {
                     appointments.map(appointment => (
                       <tr key={appointment._id}>
                         <td className="p-2">{appointment._id}</td>
-                        <td className="p-2">{appointment.doctor.name}</td>
-                        <td className="p-2">{appointment.patient.name}</td>
+                        <td className="p-2">{appointment.doctor?.name || 'N/A'}</td>
+                        <td className="p-2">{appointment.patient?.name || 'N/A'}</td>
                         <td className="p-2">{appointment.ticketPrice}</td>
                         <td className="p-2">{new Date(appointment.appointmentDate).toLocaleString()}</td>
                         <td className="p-2">

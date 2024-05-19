@@ -51,13 +51,18 @@ Chạy Ứng Dụng:
     Backend:
         ```bash
         Copy code
-        npm start
+        cd backend
+        npm install
+        npm run start-dev
+        
         ```
 
     Frontend:
         ```bash
         Copy code
-        npm start
+        cd frontend
+        npm install
+        npm run dev
         ```
 
 
@@ -65,7 +70,8 @@ Sử Dụng
     Sau khi khởi động ứng dụng, truy cập http://localhost:5173 (hoặc cổng được cấu hình) trong trình duyệt để sử dụng nền tảng Docare.
 
     Bác Sĩ có thể đăng nhập/đăng ký để quản lý khả năng tiếp nhận bệnh nhân của mình.
-    Bệnh Nhân có thể tìm kiếm thông tin bác sĩ, kiểm tra các khung giờ có sẵn, và đặt hẹn.
+    Bệnh Nhân có thể đăng ký, đăng nhập và tìm kiếm thông tin bác sĩ, kiểm tra các khung giờ có sẵn, và đặt hẹn, trả tiền hẹn khám bệnh.
+    Admin [http://localhost:5173/admin] quản trị trang web có thể thêm/xóa/sửa bệnh nhân, bác sĩ, quản lý lịch hẹn khám bệnh, quản lý review.
 
 Đóng Góp
     Chào mừng đóng góp cho dự án Docare!
@@ -82,5 +88,5 @@ Phân phối theo Giấy Phép MIT. Xem LICENSE để biết thêm thông tin.
 Liên Hệ
 Vương Quốc Đạt – vuongdat@gmail.com
 
-Liên kết Dự Án: https://github.com/vuongdat8007/Docare
+Liên kết Dự Án: https://github.com/vuongdat8007/DatHenBacSi-Docare
 

@@ -93,7 +93,7 @@ export const deleteDoctor = async (req, res) => {
 // Appointment controllers
 export const getAllAppointments = async (req, res) => {
   try {
-    const appointments = await Booking.find().populate('doctor').populate('user');
+    const appointments = await Booking.find().populate('doctor').populate('user'); // Ensure population
     res.status(200).json(appointments);
   } catch (error) {
     console.error('Error fetching appointments:', error);
