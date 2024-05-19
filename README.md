@@ -22,14 +22,15 @@ Docare là một nền tảng trực quan và thân thiện với người dùng
 
 1. **Sao Chép Repository:**
     ```bash
-    git clone https://github.com/vuongdat8007/Docare
-    cd Docare
-    Cài Đặt Các Phụ Thuộc:
+    git clone https://github.com/vuongdat8007/DatHenBacSi-Docare.git
+    cd DatHenBacSi-Docare
+
+2. **Cài Đặt Các Phụ Thuộc:**
 
 Phía backend:
 
     ```bash
-    Copy code
+    
     cd backend
     npm install
     ```
@@ -37,7 +38,7 @@ Phía backend:
 Phía frontend:
 
     ```bash
-    Copy code
+    
     cd frontend
     npm install
     ```
@@ -50,7 +51,7 @@ Chạy Ứng Dụng:
 
     Backend:
         ```bash
-        Copy code
+        
         cd backend
         npm install
         npm run start-dev
@@ -59,7 +60,7 @@ Chạy Ứng Dụng:
 
     Frontend:
         ```bash
-        Copy code
+        
         cd frontend
         npm install
         npm run dev
