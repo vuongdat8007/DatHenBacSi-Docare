@@ -63,27 +63,28 @@ const DoctorDetails = () => {
                 </div>
               </div>
 
-              <div className="mt-[50px] border-b border-solid border-[#0066ff34]">
-                <button
-                  onClick={() => setTab("about")}
-                  className={`${
-                    tab === "about" &&
-                    "border-b border-solid border-primaryColor"
-                  } py-2 px-5 mr-5 text-[16px] leading-7 text-headingColor font-semibold`}
-                >
-                  Giới thiệu
-                </button>
-                <button
-                  onClick={() => setTab("feedback")}
-                  className={`${
-                    tab === "feedback" &&
-                    "border-b border-solid border-primaryColor"
-                  } py-2 px-5 mr-5 text-[16px] leading-7 text-headingColor font-semibold`}
-                >
-                  Nhận xét
-                </button>
+              <div class="border-b border-gray-200 dark:border-gray-700">
+                <div className="mt-[50px] border-b border-solid border-[#0066ff34]">
+                  <button
+                    onClick={() => setTab("about")}
+                    className={`${
+                      tab === "about" &&
+                      "border-b border-solid border-primaryColor"
+                    } py-2 px-5 mr-5 text-[16px] leading-7 text-headingColor font-semibold`}
+                  >
+                    Giới thiệu
+                  </button>
+                  <button
+                    onClick={() => setTab("feedback")}
+                    className={`${
+                      tab === "feedback" &&
+                      "border-b border-solid border-primaryColor"
+                    } py-2 px-5 mr-5 text-[16px] leading-7 text-headingColor font-semibold`}
+                  >
+                    Nhận xét
+                  </button>
+                </div>
               </div>
-
               <div className="mt-[50px]">
                 {tab === "about" && <DoctorAbout doctor={doctor} />}
                 {tab === "feedback" && <Feedback doctor={doctor} />}
