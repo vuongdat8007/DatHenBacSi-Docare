@@ -94,3 +94,54 @@ Phân phối theo Giấy Phép MIT. Xem LICENSE để biết thêm thông tin.
 Vương Quốc Đạt – vuongdat@gmail.com
 
 Liên kết Dự Án: [https://github.com/vuongdat8007/DatHenBacSi-Docare](https://github.com/vuongdat8007/DatHenBacSi-Docare)
+
+## Đề Xuất Triển Khai Trên Dịch Vụ Đám Mây
+
+### Triển Khai Frontend với Vercel
+
+1. **Đăng Ký Tài Khoản Vercel**:
+   - Truy cập [Vercel](https://vercel.com/) và đăng ký tài khoản miễn phí.
+
+2. **Cài Đặt Vercel CLI**:
+   - Cài đặt Vercel CLI:
+     ```sh
+     npm install -g vercel
+     ```
+
+3. **Triển Khai Frontend**:
+   - Chạy lệnh:
+     ```sh
+     cd frontend
+     vercel
+     ```
+   - Làm theo hướng dẫn để liên kết dự án với tài khoản Vercel của bạn.
+
+### Triển Khai Backend với Render
+
+1. **Đăng Ký Tài Khoản Render**:
+   - Truy cập [Render](https://render.com/) và đăng ký tài khoản miễn phí.
+
+2. **Tạo Dịch Vụ Web Mới**:
+   - Trong bảng điều khiển Render, chọn "New" và chọn "Web Service".
+   - Kết nối với kho GitHub và chọn thư mục backend.
+
+3. **Cấu Hình Dịch Vụ**:
+   - Thiết lập lệnh build:
+     ```sh
+     npm install
+     ```
+   - Thiết lập lệnh start:
+     ```sh
+     npm run start
+     ```
+   - Thêm các biến môi trường cần thiết.
+
+4. **Triển Khai Backend**:
+   - Render sẽ tự động triển khai dịch vụ backend của bạn.
+
+### Cập Nhật Biến Môi Trường Frontend
+
+1. **Cập Nhật URL API**:
+   - Cập nhật `BASE_URL` trong file `.env` của frontend để trỏ đến URL backend từ Render.
+
+Sau khi hoàn thành, dự án của bạn sẽ chạy trên dịch vụ đám mây và có thể truy cập trực tuyến.
