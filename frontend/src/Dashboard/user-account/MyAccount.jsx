@@ -9,6 +9,7 @@ import useGetProfile from "../../hooks/useFetchData";
 import { BASE_URL } from "../../config";
 import Loading from "../../components/Loader/Loading";
 import Error from "../../components/Error/Error";
+import { Link } from "react-router-dom";
 
 const MyAccount = () => {
   const { dispatch } = useContext(authContext);
@@ -19,8 +20,6 @@ const MyAccount = () => {
     loading,
     error,
   } = useGetProfile(`${BASE_URL}/users/profile/me`);
-
-  //console.log(userData, "userdata");
 
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
@@ -36,6 +35,9 @@ const MyAccount = () => {
         {!loading && !error && (
           <div className="grid md:grid-cols-3 gap-10">
             <div className="pb-[50px] px-[30px] rounded-md">
+            <div className="flex items-center justify-center">
+            
+              </div>
               <div className="flex items-center justify-center">
                 <figure className="w-[100px] h-[100px] rounded-full border-2 border-solid border-primaryColor">
                   <img
@@ -62,15 +64,24 @@ const MyAccount = () => {
               </div>
 
               <div className="mt-[50px] md:mt-[100px]">
+                {userData.role === "admin" && (
+                  <Link
+                    to="/admin"
+                    className="block w-full bg-primaryColor mb-4 p-3 text-[16px] leading-7 rounded-md text-white text-center"
+                  >
+                    Admin Panel
+                  </Link>
+                )}
                 <button
                   className="w-full bg-[#181A1E] p-3 text-[16px] leading-7 rounded-md text-white"
                   onClick={handleLogout}
                 >
                   Thoát
                 </button>
-                <button className="w-full bg-red-600  mt-4 p-3 text-[16px] leading-7 rounded-md text-white">
+                <button className="w-full bg-red-600 mt-4 p-3 text-[16px] leading-7 rounded-md text-white">
                   Xoá tài khoản
                 </button>
+                
               </div>
             </div>
 
@@ -78,7 +89,7 @@ const MyAccount = () => {
               <div>
                 <button
                   onClick={() => setTab("bookings")}
-                  className={` ${
+                  className={`${
                     tab === "bookings" &&
                     "bg-primaryColor text-white font-normal"
                   } p-2 mr-5 rounded-md text-headingColor font-semibold text-[16px] leading-7 border border-solid border-primaryColor`}
@@ -87,7 +98,7 @@ const MyAccount = () => {
                 </button>
                 <button
                   onClick={() => setTab("settings")}
-                  className={` ${
+                  className={`${
                     tab === "settings" &&
                     "bg-primaryColor text-white font-normal"
                   } p-2 rounded-md text-headingColor font-semibold text-[16px] leading-7 border border-solid border-primaryColor`}
