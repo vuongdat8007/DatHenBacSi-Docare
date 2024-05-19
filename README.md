@@ -2,6 +2,10 @@
 
 Docare là một nền tảng trực quan và thân thiện với người dùng, được thiết kế để đơn giản hóa quá trình đặt hẹn với các bác sĩ. Ứng dụng này kết nối bệnh nhân với các chuyên gia y tế, cho phép lên lịch hiệu quả, quản lý khả năng tiếp nhận bệnh nhân của bác sĩ, và đặt hẹn một cách thuận tiện.
 
+## Demo ứng dụng đang chạy trên các dịch vụ đám mây Render(backend) & Vercel(frontend)
+
+Truy cập demo tại đây: [Docare Demo](https://dat-hen-bac-si-docare.vercel.app/)
+
 ## Tính Năng
 
 - **Bảng Điều Khiển Bác Sĩ**: Bác sĩ có thể quản lý khả năng tiếp nhận bệnh nhân của mình, thiết lập các ngày cụ thể và khung giờ họ có sẵn cho tư vấn.
