@@ -29,17 +29,13 @@ Docare là một nền tảng trực quan và thân thiện với người dùng
 2. **Cài Đặt Các Phụ Thuộc:**
 
 Phía backend:
-
     ```
-    
     cd backend
     npm install
     ```
 
 Phía frontend:
-
     ```
-    
     cd frontend
     npm install
     ```
@@ -51,16 +47,14 @@ Thiết Lập Biến Môi Trường:
 Chạy Ứng Dụng:
 
     Backend:
-        
        ``` 
-        cd backend
-        npm install
-        npm run start-dev
+       cd backend
+       npm install
+       npm run start-dev
        ``` 
         
 
     Frontend:
-        
         ```
         cd frontend
         npm install
