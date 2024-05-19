@@ -21,27 +21,28 @@ Docare là một nền tảng trực quan và thân thiện với người dùng
 Để chạy ứng dụng tại máy cục bộ:
 
 1. **Sao Chép Repository:**
-    
+    ```
     git clone https://github.com/vuongdat8007/DatHenBacSi-Docare.git
     cd DatHenBacSi-Docare
+    ```
 
 2. **Cài Đặt Các Phụ Thuộc:**
 
 Phía backend:
 
-    
+    ```
     
     cd backend
     npm install
-    
+    ```
 
 Phía frontend:
 
-    
+    ```
     
     cd frontend
     npm install
-    
+    ```
 
 Thiết Lập Biến Môi Trường:
 
@@ -51,20 +52,20 @@ Chạy Ứng Dụng:
 
     Backend:
         
-        
+       ``` 
         cd backend
         npm install
         npm run start-dev
-        
+       ``` 
         
 
     Frontend:
         
-        
+        ```
         cd frontend
         npm install
         npm run dev
-        
+        ```
 
 
 Sử Dụng
